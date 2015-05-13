@@ -1,0 +1,32 @@
+body{
+  width: 100%;
+  position: relative;
+}
+#header,#footer,#content{
+  height: auto;
+  width: 100%;
+  background: transparent;
+  position: relative;
+}
+
+html.layout-fixed{
+
+  #header,#footer{
+    position: fixed;
+    z-index: 2;
+    left: 0;
+  }
+
+  #header{ top:0; }
+  #footer{ bottom: 0;}
+
+  #content{
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #content.has-header{ padding-top: 44px; }
+  #content.has-footer{ padding-bottom: 44px; }
+
+}

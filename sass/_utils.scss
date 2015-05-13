@@ -1,0 +1,176 @@
+@charset "utf-8";
+/**
+ * Utility Classes
+ * --------------------------------------------------
+ */
+
+/*
+* flex box
+* ---------------------------------------------------
+*/
+
+.flex, .flex-vc, .flex-hc, .flex-vhc{
+  display: flex !important;
+}
+
+//某些手机在flex容器的伸缩项目display:inline-block时会失效,出现某些奇怪的问题
+.flex > *, .flex-vc > * , .flex-vh > *, .flex-vhc > * { display: block !important; }
+
+.flex > .flex,
+.flex > .flex-vc,
+.flex > .flex-hc,
+.flex > .flex-vhc,
+
+.flex-vc > .flex,
+.flex-vc > .flex-vc,
+.flex-vc > .flex-hc,
+.flex-vc > .flex-vhc,
+
+.flex-hc > .flex,
+.flex-hc > .flex-vc,
+.flex-hc > .flex-hc,
+.flex-hc > .flex-vhc,
+
+.flex-vhc > .flex,
+.flex-vhc > .flex-vc,
+.flex-vhc > .flex-hc,
+.flex-vhc > .flex-vhc{
+  display: flex !important;
+}
+
+.flex-vc, .flex-vhc{ align-items: center; }
+.flex-hc, .flex-vhc{ justify-content: center; }
+.flex-item{ flex: 1; }
+.flex-none{ flex: none; }
+
+.flex-h-end{ justify-content: flex-end; }
+.flex-h-start{ justify-content: flex-start; }
+.flex-h-space-between{ justify-content: space-between; }
+.flex-h-space-around{ justify-content: space-around; }
+
+.flex-v-start{ align-items: flex-start; }
+.flex-v-end{ align-items: flex-end; }
+.flex-v-stretch{ align-items: stretch; }
+.flex-v-baseline{ align-items: baseline; }
+
+.flex-column{ flex-direction: column; }
+.flex-row{ flex-direction: row; }
+
+.flex-row-reverse{ flex-direction: row-reverse; }
+.flex-column-reverse{ flex-direction: column-reverse; }
+.flex-wrap{ flex-wrap: wrap; }
+.flex-nowrap{ flex-wrap: nowrap; }
+.flex-order-reverse{ order: -1; }
+
+/*
+ * absloute layout center for fixed width or height
+ * --------------------------------------------------
+*/
+.abs-vc, .abs-vhc{ margin: auto 0; position: absolute; top: 0; bottom: 0; z-index: 180; }
+.abs-hc, .abs-vhc{ margin: 0 auto; position: absolute; left: 0; right: 0; z-index: 180; }
+.abs-vhc{ margin: auto; }
+.abs-offset-right{ margin: auto 0; position: absolute; top: 0; bottom: 0; z-index: 180; left: auto; right: 0; text-align: right; }
+.abs-offset-left{ margin: auto 0; position: absolute; top: 0; bottom: 0; z-index: 180; right: auto; left: 0; text-align: left; }
+.abs-stretch{ position: absolute; top:0; bottom: 0; left: 0; right: 0; }
+
+/*
+ * transform center
+ * --------------------------------------------------
+*/
+.transform-vhc{margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.transform-vc-right{margin: auto; position: absolute; top: 50%; right: 0; transform: translateY(-50%); }
+.transform-vc-left{margin: auto; position: absolute; top: 50%; left: 0; transform: translateY(-50%); }
+
+/*
+ * inline-block center
+ * --------------------------------------------------
+*/
+/*.inline-vc,.inline-vhc{ font-size: 0;}*/
+.inline-vhc{ text-align: center; }
+.inline-vc > *,.inline-vhc > *{ display: inline-block; vertical-align: middle; font-size: 14px;max-width: 99%;}
+.inline-vc::after,.inline-vhc::after{content: "";display: inline-block;vertical-align: middle;height: 100%;width: 0;}
+
+/*
+ * rotate
+ * --------------------------------------------------
+*/
+.rotate90{ transform: rotate(90deg);}
+.rotate180{ transform: rotate(180deg);}
+.rotate270{ transform: rotate(180deg);}
+
+/*
+ * scroll touch
+ * --------------------------------------------------
+*/
+.scroll-touch{ overflow: scroll; -webkit-overflow-scrolling: touch; }
+
+/*
+* show / hiden
+* ---------------------------------------------------
+*/
+.hide { display: none; }
+.show { display: block; }
+.inline { display: inline-block; }
+.block { display: block;clear: both;}
+.block:after { display: block; visibility: hidden; clear: both; height: 0; content: ".";}
+
+
+/*
+ * float
+ * ---------------------------------------------------
+*/
+.fl{ float: left; }
+.fr{ float: right; }
+
+/*
+* text align
+*/
+.tc{ text-align: center; }
+.tl{ text-align: left; }
+.tr{ text-align: right; }
+.line-through{ text-decoration: line-through; }
+
+/*
+ * 文本溢出
+ *-----------------------
+*/
+//单行
+.ellipsis{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+//多行
+.ellipsis2{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+//禁止换行
+.nowrap{ white-space: nowrap; }
+
+/*
+ * clearfix
+ * ---------------------------------------------------
+*/
+.clearfix:before,
+.clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+
+/*
+* font size
+* -------------------------------------------------
+*/
+.small{ font-size: 12px; }
+
+/*
+* mask
+* ------------------------------------------------
+*/
+.mask-abs{ position: absolute; }
+.mask-fixed{ position: fixed; }
+.mask-abs, .mask-fixed{
+  top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+
