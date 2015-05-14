@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+.row {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+}
+.row-wrap {
+  flex-wrap: wrap;
+}
+.row + .row {
+  margin-top: 10px;
+}
+
+.col {
+  flex: 1;
+  display: block;
+  width: 100%;
+}
+
+/* Vertically Align Columns */
+/* .row-* vertically aligns every .col in the .row */
+.row-top {
+  align-items: flex-start;
+}
+.row-bottom {
+  align-items: flex-end;
+}
+.row-center {
+  align-items: center;
+}
+.row-stretch {
+  align-items: stretch;
+}
+.row-baseline {
+  align-items: baseline;
+}
+
+/* .col-* vertically aligns an individual .col */
+.col-top {
+  align-self: flex-start;
+}
+.col-bottom {
+  align-self: flex-end;
+}
+.col-center {
+  align-self: center;
+}
+
+/* Column Offsets */
+.col-offset-10 {
+  margin-left: 10%;
+}
+.col-offset-20 {
+  margin-left: 20%;
+}
+.col-offset-25 {
+  margin-left: 25%;
+}
+.col-offset-33, .col-offset-34 {
+  margin-left: 33.3333%;
+}
+.col-offset-50 {
+  margin-left: 50%;
+}
+.col-offset-66, .col-offset-67 {
+  margin-left: 66.6666%;
+}
+.col-offset-75 {
+  margin-left: 75%;
+}
+.col-offset-80 {
+  margin-left: 80%;
+}
+.col-offset-90 {
+  margin-left: 90%;
+}
+

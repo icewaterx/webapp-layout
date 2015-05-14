@@ -11,6 +11,7 @@
 
 .flex, .flex-vc, .flex-hc, .flex-vhc{
   display: flex !important;
+  width: 100%;
 }
 
 //某些手机在flex容器的伸缩项目display:inline-block时会失效,出现某些奇怪的问题

@@ -1,0 +1,30 @@
+@charset "utf-8";
+/**
+ * Badges
+ * --------------------------------------------------
+ */
+.badge {
+    background-color: #ef473a;
+    color: #fff;
+    z-index: 1;
+    display: inline-block;
+    padding: 3px 8px;
+    min-width: 10px;
+    border-radius: 10px;
+    vertical-align: baseline;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    &:empty {
+        display: none;
+    }
+}
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #ef473a;
+    display: inline-block;
+}

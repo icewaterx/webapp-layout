@@ -1,0 +1,167 @@
+.bar{
+  height: 44px;
+  width: 100%;
+  position: relative;
+  border-width: 0;
+  border-style: solid;
+  background-color: #f8f8f8;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #b2b2b2;
+  padding: 5px;
+
+  display: flex;
+
+  //bar title
+  .title{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+
+    margin: 0 10px;
+    min-width: 30px;
+    height: 43px;
+    text-align: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 17px;
+    line-height: 44px;
+
+    &.title-left {
+      text-align: left;
+    }
+    &.title-right {
+      text-align: right;
+    }
+    & a{ color: inherit; }
+  }
+
+  //bar buttons
+  .button{
+    z-index: 1;
+    padding: 0 8px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 400;
+
+    &.button-back{
+      padding: 0;
+      border-color: transparent;
+      background: none;
+      font-size: 14px;
+
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      transition: opacity .1s;
+      &:before{
+        font-family: "icomoon";
+        content: "\e6bc";
+        line-height: 32px;
+        font-size: 20px;
+        display: inline-block;
+        vertical-align: top;
+      }
+      &:active{
+        background: none;
+        border-color: transparent;
+        box-shadow: none;
+        opacity: .5;
+      }
+    }
+
+    & > .icon{
+      line-height: 32px;
+      font-size: 20px;
+      padding-right: 2px;
+      padding-left: 2px;
+    }
+
+    &.button-clear{
+      font-size: 15px;
+      border-color: transparent;
+      background: none;
+      & > .icon{
+        padding: 0;
+        margin: 0;
+      }
+      &.button-text-icon{
+        padding: 0;
+      }
+    }
+
+
+  }
+
+  // Place the last button in a bar on the right of the bar
+  .title + .button:last-child, > .button.pull-right, .buttons.pull-right, .title + .buttons {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+}
+
+#footer .bar{
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid #b2b2b2;
+}
+
+.bar-tab{
+  display: flex;
+  background-color: #f8f8f8;
+  border-top: 1px solid #b2b2b2;
+  border-bottom: 1px solid transparent;
+
+  height: 49px;
+  width: 100%;
+  line-height: 49px;
+  color: #444;
+
+  & .tab-link {
+    flex: 1;
+    display: block;
+    height: 100%;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  & .tab-link .icon {
+    font-size: 32px;
+    display: block;
+    height: 32px;
+    margin: 0 auto;
+  }
+
+  &.tab-icon-left .tab-link{
+    font-size: 12px;
+    .icon {
+      font-size: 24px;
+      display: inline-block;
+      vertical-align: top;
+      padding-right: 3px;
+      margin-top: -1px;
+    }
+  }
+
+  &.tab-icon-top .tab-link {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  &.tab-icon-only .tab-link .icon {
+    line-height: inherit;
+  }
+
+}
+

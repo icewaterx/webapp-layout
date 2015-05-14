@@ -1,0 +1,221 @@
+@charset "utf-8";
+//* @$text-color : 按钮文本颜色
+//* @$bg : 按钮背景颜色
+//* @$border-color :  按钮边框颜色
+//* @$active-bg : 点击时背景色
+//* @$active-border-color : 点击时边框颜色
+@mixin button-style($text-color, $bg, $border-color, $active-bg, $active-border-color) {
+  color: $text-color;
+  background: $bg;
+  border-color: $border-color;
+  &.active,&.activated,&:active{
+    border-color: $active-border-color;
+    background-color: $active-bg;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,.1);
+  }
+}
+
+@mixin button-outline($border-color, $text-color: "") {
+  //这里再增加一个类 提高权重
+  &.button-outline{
+    @if $text-color == "" {
+      $text-color: $border-color;
+    }
+    color: $text-color;
+    background: transparent;
+    border-color: $border-color;
+    &.active,&.activated,&:active{
+      box-shadow: none;
+      background: $border-color;
+      color: #fff;
+    }
+  }
+}
+
+@mixin button-clear($text-color, $text-size:"") {
+  &.button-clear{
+    @if $text-size != "" {
+      font-size: $text-size;
+    }
+    color: $text-color;
+    padding: 0 6px;
+    background: none;
+    border-color: transparent;
+    &.active,&.activated,&:active {
+      background: none;
+      box-shadow: none;
+      opacity: .5;
+    }
+  }
+}
+
+
+$zen:                             #f8f8f8 !default;
+$blue:                            #387ef5 !default;
+$red:                             #ef473a !default;
+/*buttons*/
+
+//Const
+$btn-radius: 3px;
+
+//default
+$btn-txt-color: #444 !default;
+$btn-border-color: #b2b2b2 !default;
+$btn-bg: #f8f8f8 !default;
+$btn-active-bg: #e5e5e5 !default;
+$btn-active-border-color: #a2a2a2 !default;
+$btn-icon-size: 20px;
+$btn-icon-color: #2b2b2b;
+
+//blue
+$btn-blue-bg: $blue;
+$btn-blue-txt-color: #fff !default;
+$btn-blue-border-color: darken($blue,10) !default;
+$btn-blue-active-bg: darken($blue,10) !default;
+$btn-blue-active-border-color: darken($blue,10) !default;
+$btn-blue-icon-color: #fbfbfb;
+$btn-blue-outline-icon-color: #2b2b2b;
+
+//red
+$btn-red-bg: $red;
+$btn-red-txt-color: #fff !default;
+$btn-red-border-color: darken($red,10) !default;
+$btn-red-active-bg: darken($red,10) !default;
+$btn-red-active-border-color: darken($red,10) !default;
+$btn-red-icon-color: #fbfbfb;
+$btn-red-outline-icon-color: #2b2b2b;
+
+.button {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $btn-radius;
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: middle;
+  &:after {
+    // used to create a larger button "hit" area
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+    content: ' ';
+  }
+}
+
+//默认按钮
+.button{
+  //设置按钮的默认style
+  @include button-style($btn-txt-color, $btn-bg, $btn-border-color, $btn-active-bg, $btn-active-border-color);
+  @include button-outline($btn-border-color,$btn-txt-color);
+  @include button-clear($btn-txt-color);
+}
+
+//blue 按钮
+.button.button-blue{
+  @include button-style($btn-blue-txt-color, $btn-blue-bg, $btn-blue-border-color, $btn-blue-active-bg, $btn-blue-active-border-color);
+  @include button-outline($btn-blue-border-color);
+  @include button-clear($btn-blue-border-color);
+}
+
+//red 按钮
+.button.button-red{
+  @include button-style($btn-red-txt-color, $btn-red-bg, $btn-red-border-color, $btn-red-active-bg, $btn-red-active-border-color);
+  @include button-outline($btn-red-border-color);
+  @include button-clear($btn-red-border-color);
+}
+
+//按钮包含icon
+.button > .icon{
+  color: $btn-icon-color;
+  font-size: $btn-icon-size;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 2px;
+  //&:only-child{  margin-right: 0; }
+}
+
+//blue 按钮下的icon颜色
+.button.button-blue > .icon{
+  color: $btn-blue-icon-color;
+}
+
+//red 按钮下的icon颜色
+.button.button-red > .icon{
+  color: $btn-red-icon-color;
+}
+
+//icon位置
+.button.button-icon-right > .icon{
+  float: right;
+  margin-right: 0;
+  margin-left: 2px;
+}
+
+//btn outline
+.button.button-outline.active,.button.button-outline.activated,.button.button-outline:active{
+  & > .icon{
+    color: #fff;
+  }
+}
+.button.button-blue.button-outline {
+  & > .icon{
+    color: $btn-blue-border-color;
+  }
+  &.active,&.activated,&:active{
+    > .icon{
+      color: $btn-blue-icon-color;
+    }
+  }
+}
+
+.button.button-red.button-outline {
+  & > .icon{
+    color: $btn-red-border-color;
+  }
+  &.active,&.activated,&:active{
+    > .icon{
+      color: $btn-red-icon-color;
+    }
+  }
+}
+
+//button clear
+.button.button-clear{
+  transition: opacify .1s;
+}
+
+.button.button-clear.button-blue > .icon{
+  color: $btn-blue-border-color;
+}
+.button.button-clear.button-red > .icon{
+  color: $btn-red-border-color;
+}
+
+
+//button block and button full
+.button-block,.button-full{
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px 12px;
+}
+.button-full{
+  margin-left: 0;
+  margin-right: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-radius: 0;
+}
+
+.button.disabled,
+.button[disabled] {
+  opacity: .4;
+  cursor: default !important;
+  pointer-events: none;
+}

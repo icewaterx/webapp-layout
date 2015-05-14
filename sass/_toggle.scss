@@ -1,0 +1,113 @@
+@charset "utf-8";
+// Toggle Mixins
+// --------------------------------------------------
+@mixin toggle-style($on-border-color, $on-bg-color) {
+  // the track when the toggle is "on"
+  & input:checked + .track {
+    border-color: $on-border-color;
+    background-color: $on-bg-color;
+  }
+}
+/**
+ * Toggle
+ * --------------------------------------------------
+ */
+$toggle-width:                    54px !default;
+$toggle-height:                   32px !default;
+$toggle-border-width:             2px !default;
+$toggle-border-radius:            20px !default;
+
+$toggle-handle-width:             $toggle-height - ($toggle-border-width * 2) !default; //32 - 2*2 = 28
+$toggle-handle-height:            $toggle-handle-width !default;  //28
+$toggle-handle-radius:            $toggle-handle-width !default;  //28
+$toggle-handle-dragging-bg-color: darken(#fff, 5%) !default;
+
+$toggle-off-bg-color:             #E5E5E5 !default;
+$toggle-off-border-color:         #E5E5E5 !default;
+
+$toggle-on-default-border:        #387ef5;
+$toggle-on-default-bg:            #387ef5;
+
+$toggle-handle-off-bg-color:      #fff !default;
+$toggle-handle-on-bg-color:       #fff !default;
+
+$toggle-transition-duration:      .2s !default;
+$toggle-hit-area-expansion:       5px;
+
+.toggle {
+  // set the color defaults
+  @include toggle-style($toggle-on-default-border, $toggle-on-default-bg);
+
+  position: relative;
+  display: inline-block;
+  pointer-events: auto;
+  margin: -$toggle-hit-area-expansion;
+  padding: $toggle-hit-area-expansion;
+
+  &.dragging {
+    .handle {
+      background-color: $toggle-handle-dragging-bg-color !important;
+    }
+  }
+}
+
+.toggle input {
+  // hide the actual input checkbox
+  display: none;
+}
+
+/* the track appearance when the toggle is "off" */
+.toggle .track {
+  @include transition-timing-function(ease-in-out);
+  @include transition-duration($toggle-transition-duration);
+  @include transition-property((background-color, border));
+
+  display: inline-block;
+  width: $toggle-width;
+  height: $toggle-height;
+  border: solid $toggle-border-width $toggle-off-border-color;
+  border-radius: $toggle-border-radius;
+  background-color: $toggle-off-bg-color;
+  content: ' ';
+  cursor: pointer;
+  pointer-events: none;
+}
+
+/* Fix to avoid background color bleeding */
+/* (occured on (at least) Android 4.2, Asus MeMO Pad HD7 ME173X) */
+.platform-android4_2 .toggle .track {
+  -webkit-background-clip: padding-box;
+}
+
+/* the handle (circle) thats inside the toggle's track area */
+/* also the handle's appearance when it is "off" */
+.toggle .handle {
+  @include transition($toggle-transition-duration ease-in-out);
+  position: absolute;
+  display: block;
+  width: $toggle-handle-width;
+  height: $toggle-handle-height;
+  border-radius: $toggle-handle-radius;
+  background-color: $toggle-handle-off-bg-color;
+  top: $toggle-border-width + $toggle-hit-area-expansion;
+  left: $toggle-border-width + $toggle-hit-area-expansion;
+
+  &:before {
+    // used to create a larger (but hidden) hit area to slide the handle
+    position: absolute;
+    top: -4px;
+    left: ( ($toggle-handle-width / 2) * -1) - 8;
+    padding: (($toggle-handle-height / 2) + 5) ($toggle-handle-width + 7);  //padding: 19px 35px;
+    content: " ";
+  }
+}
+
+.toggle input:checked + .track .handle {
+  // the handle when the toggle is "on"
+  @include translate3d($toggle-width - $toggle-handle-width - ($toggle-border-width * 2), 0, 0);
+  background-color: $toggle-handle-on-bg-color;
+}
+
+.toggle input:disabled + .track {
+  opacity: .6;
+}
